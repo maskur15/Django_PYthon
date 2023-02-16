@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %} 
+
+<h1>Name is {{student}} and age is {{age}}</h1>
+{% if age > 18 %} 
+<h2>adult person </h2>
+{% elif age < 18 %}
+<h2>child</h2>
+
+{% else %} 
+<h2> young man </h2>
+
+{% endif %} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in booklist %}
+        <tr>
+            <td>{{book.id }} {% if book.rated %} <strong>topRated</strong> {% endif %} </td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %} 
