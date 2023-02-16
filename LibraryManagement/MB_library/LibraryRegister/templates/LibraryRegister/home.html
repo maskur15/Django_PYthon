@@ -1,0 +1,29 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+
+
+<h1>This is our library home page on running </h1>
+<table>
+    <thead>
+        <tr>
+            <th>id </th>
+            <th>Author</th>
+            <th>Book Name </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in booklist %}
+
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.title}}  {% if book.rated %} <strong>Rated </strong> {% endif %} </td>
+        </tr>
+        {% endfor %}
+      
+    </tbody>
+</table>
+
+{% endblock %}
