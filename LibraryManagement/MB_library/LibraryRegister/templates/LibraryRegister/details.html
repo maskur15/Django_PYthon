@@ -1,12 +1,7 @@
 {% extends 'main.html' %} 
 
 {% block content %}
-
- <h1>Description of the book </h1>
-  {% if book  %}
- <h1> {{book.title}} is available </h1> 
- {% else %}
- <h1>The book with id {{bookKey}} is not available </h1>
-
- {% endif %}
+<h1>{{ book.title }}</h1>
+<h2>Description</h2>
+<p> {{ book.description }}</p>
 {% endblock %} 

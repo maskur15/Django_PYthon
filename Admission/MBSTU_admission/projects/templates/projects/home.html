@@ -13,20 +13,25 @@
 
 {% endif %} 
 
+
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Title</th>
-            <th>Author</th>
+            <th>Tag</th>
+            <th>Description</th>
+            <Th></Th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {% for book in booklist %}
+        {% for project in projects %}
         <tr>
-            <td>{{book.id }} {% if book.rated %} <strong>topRated</strong> {% endif %} </td>
-            <td>{{book.title}}</td>
-            <td>{{book.author}}</td>
+            <td> <a href="{% url 'search' project.id  %}"> {{project.title }} </a></td>
+            <td>{{project.tags}}</td>
+            <td>{{project.description}}</td>
+            <td> <a href="{% url 'update-project' project.id %}">Edit</a> </td>
+            <td><a href="{% url 'delete-project' project.id %}">Delete </a></td>
         </tr>
 
         {% endfor %}
