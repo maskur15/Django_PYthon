@@ -1,14 +1,15 @@
 {% extends 'main.html' %} 
 
 {% block content %}
-
-<table style=" border-collapse: collapse">
+<div >
+    <table style=" border-collapse: collapse">
     <thead >
         <tr>
             <th>Book Name </th>
             <th>Author</th>
             <th>Book Link</th>
-
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
     </thead>
         <tbody>
@@ -17,6 +18,9 @@
                <td style="text-align:center;border:1px red solid;padding:2px; border-collapse: collapse;"> {{book.title}} </td>
                <td  style="text-align:center;border:1px red solid;padding:1px; border-collapse: collapse;"> {{book.author}} </td>
                <td  style="text-align:center;border:1px red solid;padding:1px; border-collapse: collapse;"> <a href="search/{{book.id}}">Go</a>  </td>
+               <td  style="text-align:center;border:1px red solid;padding:1px; border-collapse: collapse;"> <a href="{% url 'update-book' book.id %}">Edit</a>  </td>
+               <td  style="text-align:center;border:1px red solid;padding:1px; border-collapse: collapse;"> <a href="{% url 'delete-book' book.id %}">Delete</a>  </td>
+
            </tr>
 
 
@@ -25,6 +29,8 @@
     </tbody>
 
 </table>
+
+</div>
 
 
 {% endblock %}
