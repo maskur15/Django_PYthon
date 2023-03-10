@@ -18,12 +18,13 @@ def showMain(request):
 
 def search(request,bk):
     bookObject= Book.objects.get(id=bk)
-    context={"book":bookObject,'bookKey':bk}
+    tags = bookObject.tags.all()
+    context={"book":bookObject,'bookKey':bk,'tags':tags}
     return render(request,'LibraryRegister/details.html',context)
 def createBook(request):
     form = BookForm()
     if request.method=='POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -35,7 +36,7 @@ def updateBook(request,bookKey):
     form = BookForm(instance=book)
 
     if request.method=='POST':
-        form = BookForm(request.POST,instance=book)
+        form = BookForm(request.POST,request.FILES,instance=book)
         if form.is_valid():
             form.save()
             return redirect('home')

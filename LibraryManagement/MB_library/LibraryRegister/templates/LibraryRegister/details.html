@@ -1,7 +1,12 @@
 {% extends 'main.html' %} 
 
 {% block content %}
+<img style="max-width: 200px;" src="{{book.imageUrl}}" alt=""> <br>
+{% for tag in tags %}
+<span style="color:red; text-decoration: solid; border: 1px solid black;font-size :25px;;">{{tag}}</span>
+{% endfor %}
+
 <h1>{{ book.title }}</h1>
 <h2>Description</h2>
-<p> {{ book.description }}</p>
+<p> {{ book.description }}  </p>
 {% endblock %} 
