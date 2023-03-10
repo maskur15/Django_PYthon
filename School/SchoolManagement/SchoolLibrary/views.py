@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
+
 # Create your views here.
 from .models import Book 
 def getDate(request):
@@ -16,3 +17,7 @@ def getBook(request):
     book= str(Book.objects.all())
     print(book)
     return HttpResponse('type is:',str(type(book)))
+def showHome(request):
+    book = Book.objects.all();
+    context = {'bookList':book}
+    return render(request,'main.html',context)

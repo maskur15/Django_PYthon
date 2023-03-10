@@ -2,23 +2,14 @@
 
 {% block content %} 
 
-<h1>Name is {{student}} and age is {{age}}</h1>
-{% if age > 18 %} 
-<h2>adult person </h2>
-{% elif age < 18 %}
-<h2>child</h2>
-
-{% else %} 
-<h2> young man </h2>
-
-{% endif %} 
+{% load static %} 
 
 
+<img style="width: 200px; " src="{% static 'images/cat.jpg' %}" alt="cat">
 <table class="table">
     <thead>
         <tr>
             <th>Title</th>
-            <th>Tag</th>
             <th>Description</th>
             <Th></Th>
             <th></th>
@@ -28,7 +19,6 @@
         {% for project in projects %}
         <tr>
             <td> <a href="{% url 'search' project.id  %}"> {{project.title }} </a></td>
-            <td>{{project.tags}}</td>
             <td>{{project.description}}</td>
             <td> <a href="{% url 'update-project' project.id %}">Edit</a> </td>
             <td><a href="{% url 'delete-project' project.id %}">Delete </a></td>

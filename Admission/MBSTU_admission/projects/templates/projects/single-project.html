@@ -2,6 +2,8 @@
 
 {% block content %} 
 
+<img style="width: 500px; " src="{{project.imageURL}}" alt="">
+
 <h1>{{project.title}}</h1>
 {% for tag in tags %}
 <spans style="border: 1px solid #999;padding: 1em ;">{{tag}}</spans>
