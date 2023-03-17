@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<p>
+    This is a home page for our journal 
+</p>
+{% for paper in papers %}
+  {{paper.title}}
+  <br>
+  {{paper.description}}
+  <br>
+  <img src="MBSTU_Journal/{{paper.featured_image.url}}" alt="">
+{% endfor %}
+{{papers.title}}
+{% endblock %}
