@@ -1,0 +1,11 @@
+{% extends 'main.html' %} 
+{% block content %} 
+
+<form action="" method="POST">
+    {% csrf_token %} 
+    <h4>Are you sure to delete : {{paper.title}} ? </h4>
+  <p>  <a href="{% url 'home' %}">Go back</a> </p>
+    <input type="submit" value='Delete' class="btn btn-danger">
+</form>
+
+{% endblock %}

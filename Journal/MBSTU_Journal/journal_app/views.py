@@ -19,6 +19,17 @@ def singlePaper(request,paperid):
     tags = paperobj.tags.all()
     context = {'paper':paperobj,'tags':tags }
     return render(request,'journal_app/single-paper.html',context)
+def createPaper(request):
+    if request.method=='POST':
+        form = paperForm(request.POST,request.FILES)
+        print(form)
+        if form.is_valid:
+            form.save()
+            return redirect('home')
+    else:
+        form = paperForm()
+        context ={'form':form}
+        return render(request,'journal_app/paper-form.html',context)
 
 def updatePaper(request,paperid):
     paper = Papers.objects.get(id=paperid)
@@ -30,3 +41,10 @@ def updatePaper(request,paperid):
             return redirect('home')
     context = {'form':form}
     return render(request,'journal_app/paper-form.html',context)
+def deletePaper(request,paperid):
+    paper = Papers.objects.get(id=paperid)
+    if request.method=='POST':
+        paper.delete()
+        return redirect('home')
+    context = {'paper':paper}
+    return render(request,'journal_app/confirm-delete.html',context)
