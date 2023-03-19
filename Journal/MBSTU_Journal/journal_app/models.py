@@ -12,7 +12,7 @@ class Papers(models.Model):
     #owner 
     title = models.CharField(max_length=200)
     description = models.TextField(null=True,blank=True)
-
+    author = models.CharField(max_length=200)
     featured_image = models.ImageField(null=True,blank=True)
 
     demo_link = models.CharField(max_length=1000,null=True,blank=True)

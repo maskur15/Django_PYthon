@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/images/' #the directory from which to read the image in html page 
 
 STATICFILES_DIRS = [
    BASE_DIR / 'static'

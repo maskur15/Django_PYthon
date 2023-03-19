@@ -4,12 +4,33 @@
 <p>
     This is a home page for our journal 
 </p>
-{% for paper in papers %}
-  {{paper.title}}
-  <br>
-  {{paper.description}}
-  <br>
-  <img src="MBSTU_Journal/{{paper.featured_image.url}}" alt="">
-{% endfor %}
-{{papers.title}}
-{% endblock %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Visit</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for paper in papers %}
+        <tr>
+            <td>{{ paper.title }}</td>
+            <td>{{ paper.author }}</td>
+            <td><a href="{% url 'singlepaper' paper.id %}">Visit</a></td>
+            <td><a href="{% url 'updatepaper' paper.id %}">Edit</a></td>
+            <td><a href="">Delete</a></td>
+        </tr>
+        {% endfor  %}
+
+    </tbody>
+
+
+  </table>
+
+  <a style="float:inline-end;" href="#" class="btn btn-primary "  role="button" aria-pressed="true">Add paper</a>
+
+  {% endblock %}

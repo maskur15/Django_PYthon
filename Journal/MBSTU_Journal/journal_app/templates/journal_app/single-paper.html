@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center ;">{{paper.title}}</h1>
+<h2  style="text-align: center;">{{paper.author}}</h2>
+  <br>
+  {{paper.description}}
+  <br>
+  <img src="{{paper.featured_image.url}}" style="width:200px; height: 300px ;" alt="">
+  <br>
+
+  
+
+
+
+  {% endblock %}
