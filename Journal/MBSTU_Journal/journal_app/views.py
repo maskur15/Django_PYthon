@@ -46,5 +46,6 @@ def deletePaper(request,paperid):
     if request.method=='POST':
         paper.delete()
         return redirect('home')
+    
     context = {'paper':paper}
     return render(request,'journal_app/confirm-delete.html',context)
