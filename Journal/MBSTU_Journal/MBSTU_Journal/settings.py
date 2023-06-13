@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!v!2ms(q^(5i!f!iu(kiny80ml^pzwt@b@8a(mqdx-=b*4z@#&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','mywebsite.com']
 
 
 # Application definition
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+
+        "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,11 +125,14 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/images/' #the directory from which to read the image in html page 
 
-STATIC_DIRS = [
-    BASE_DIR / 'static'
+STATICFILES_DIRS = [
+   # BASE_DIR / 'static'
+   os.path.join(BASE_DIR,'static')
 ]
-MEDIA_ROOT = BASE_DIR / 'static/images' #this is the directory where the image will save when upload in the database
 
+
+MEDIA_ROOT = BASE_DIR / 'static/images' #this is the directory where the image will save when upload in the database
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
