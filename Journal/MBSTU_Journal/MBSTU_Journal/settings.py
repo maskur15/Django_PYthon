@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!v!2ms(q^(5i!f!iu(kiny80ml^pzwt@b@8a(mqdx-=b*4z@#&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','mywebsite.com']
 
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/images/' #the directory from which to read the image in html page 
+MEDIA_URL = '/files/' #this is the url path which will show in the address bar 
 
 STATICFILES_DIRS = [
    # BASE_DIR / 'static'
@@ -132,7 +132,8 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images' #this is the directory where the image will save when upload in the database
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles' # this root is used for production when debug is False 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
