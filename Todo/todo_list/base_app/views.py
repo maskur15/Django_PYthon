@@ -1,3 +1,5 @@
+from typing import Any, Dict
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 
 from django.http import HttpResponse
@@ -23,6 +25,12 @@ class TaskList(LoginRequiredMixin,ListView):
     model = Task
     context_object_name= 'tasks'
 
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(complete=False).count()
+        return context
+
 class TaskDetail(LoginRequiredMixin,DetailView):
     #detail view return the specific item 
     model = Task 
@@ -32,8 +40,13 @@ class TaskDetail(LoginRequiredMixin,DetailView):
 class TaskCreate(LoginRequiredMixin,CreateView):
     #this view will look for a html template task_form 
     model= Task 
-    fields= '__all__'
+    fields= ['title','description','complete']
     success_url= reverse_lazy('tasks') # after submitting the form 'tasks' url will be called
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
 
 class TaskUpdate(LoginRequiredMixin,UpdateView):
     #this view will also look for a html template task_form
