@@ -8,12 +8,10 @@ body{
 h1{
     border: 2px dotted blue; 
     text-align: center;
-
-    border-right: 1px solid red;
-    
-    padding: 50px;
+    padding: 4px;
+    width: 50%;
 }
 p{
-   
+   width: 100ch;
     
 }
