@@ -1,4 +1,9 @@
 # pip installl psycopg2
+# git add .
+# git commit 
+# i: insert message
+# ctrl+c + wq : close the vi
+# git push origin main
 
 import psycopg2
 

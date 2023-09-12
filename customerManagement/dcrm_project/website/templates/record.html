@@ -1,0 +1,30 @@
+{% extends  'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h5 class="card-header d-flex justify-content-center">Customer Details</h5>
+        <div class="card-body">
+          <h6 class="card-title">
+       
+
+          </h6>
+          <p class="card-text">
+            <strong> Name: </strong>  {{record.first_name}} {{record.last_name}} <br>
+            <strong>Email: </strong> {{record.email}}  <br>
+         
+            <strong>Phone: </strong> {{record.phone}} <br>
+            <strong>Address:</strong> {{record.address}}  <br>
+            <strong>State: </strong> {{record.state}}  <br>
+            <strong>Zipcode: </strong> {{record.zipcode}}  <br>
+        </p>
+        </div>
+      </div>
+      <br>
+      <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+      <a href="{% url 'delete' record.id %}" class="btn btn-danger">Delete</a>
+      <a href="{% url 'update' record.id %}" class="btn btn-primary">Update</a>
+
+</div>
+
+{% endblock %}
