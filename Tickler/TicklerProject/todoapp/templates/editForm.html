@@ -11,22 +11,25 @@
       <div class="row mt-5">
           <div class="col-lg-6">
               <div class="card card_background">
-                  <div class="card-header shadow-sm">
+                  <div class="card-header shadow-sm ">
                       <h1 class="display-5 text-info"> <i class="fas fa-check-double"></i>Todo</h1>
                   </div>
                   <div class="card-body">
-                    <form action="{% url 'create_task' %}" method="post" autocomplete="off">
+                    <form action="{% url 'update_item' item.id %}" method="post" autocomplete="off">
                       {% csrf_token %}
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Write the title" name="task_title" value="{{item.task_title}}" required>
+                        <label for="task_title" style="color:white">Enter title</label>
+                        <input type="text" class="form-control"  name="task_title" value="{{item.title}}" required>
+
+                      </div>
+
+                      <div class="form-group">
+                        <label for="task-description" style="color: white;">Enter Description</label>
+                        <textarea class="form-control" id="task-description" name="task_description" value="{{item.description}}" rows="4"></textarea>
 
                       </div>
                       <div class="form-group">
-                        <textarea class="form-control" id="task-description" placeholder="Give the deteails" name="task_description" rows="4"></textarea>
-
-                      </div>
-                      <div class="form-group">
-                        <button type="submit" class="btn-custom">Add</button>
+                        <button type="submit" class="btn-custom">Update</button>
                       </div>
                   </form>
                   </div>
@@ -35,19 +38,22 @@
               </div>    
           </div>
           <div class="col-lg-6">
-            <div class="card card_background ">
-                <div class="card-header shadow-sm  " >
-                    <h1 class="display-5  " > <i class="fas fa-check-double"></i>Todo</h1>
+            <div class="card card_background">
+                <div class="card-header shadow-sm ">
+                    <h1 class="display-5 text-info"> <i class="fas fa-check-double"></i>Todo</h1>
                 </div>
-            <div class="card-body card_body_color">
+            <div class="card-body">
               {% for item in tasks %}
 
-              <li class="list-group-item">{{item.title}} 
-   
+              <li class="list-group-item">
+                {{item.title}} 
+      
+                <a href="{% url 'update_item' item.id %}" class="float-right d-inline btn"  >  
+                    <i class="fa-solid fa-pen-to-square" style="color: #34aa2c;"></i>
+                  </a>
+    
 
-              <a href="{% url 'update_item' item.id %}" class="float-right d-inline btn"  >  
-                <i class="fa-solid fa-pen-to-square" style="color: #34aa2c;"></i>
-              </a>
+              
 
                <form action="{%  url 'delete_item' item.id %}" method="post" onsubmit="return confirmDelete()" autocomplete="off" style="float: right;">
                    {% csrf_token %}
@@ -73,11 +79,11 @@
     <div class="container col-md-6 offset-md-3 mt-5">
   
       <div class="card">
-        <div class="card-header" style="background-color: rgb(0, 0,0);">
-          <h1 class="text-center" style="font-family: cursive;">Login</h1>
+        <div class="card-header" style="background-color: rgb(159, 186, 231);">
+          <h1 class="text-center">Login</h1>
 
         </div>
-        <div class="card-body" style="background-color:#032e2e;">
+        <div class="card-body" style="background-color: azure;">
           <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
         

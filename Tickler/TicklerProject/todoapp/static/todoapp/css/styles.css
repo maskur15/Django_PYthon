@@ -1,0 +1,65 @@
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(6 255 230);
+}
+body{
+  background-color: #343a40;
+}
+.card-h1{
+  color:#32ff18;
+}
+.card_background{
+  background-color:#1d1924!important;
+}
+
+
+/* Add this CSS to your stylesheet or in a <style> block in your HTML */
+
+/* Define your custom button style */
+.btn-custom {
+    background-color:#3f51b5; /* Background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove the default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding around the text */
+    font-size: 18px; /* Text size */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  /* Style the button on hover */
+  .btn-custom:hover {
+    background-color: #231d92; /* Change background color on hover */
+  }
+  
+
+  /* Styling for the "Tickler" logo */
+.navbar_logo {
+  font-family: 'fantasy', cursive; /* Use the chosen font */
+  font-size: xx-large; /* Adjust the font size */
+  color: #b8ff29; /* Text color */
+  text-decoration: none;
+}
+.navbar_logo:hover {
+  color: #ff0000; /* Set the color on hover to the same color as the default */
+  text-decoration: none; /* Remove the underline on hover */
+}
+.text-muted{
+  color:white;
+}
+
+/* Change the text color for elements with class form-text text-muted small */
+
+/* Change the text color of password suggestions */
+.form-text.text-muted.small {
+  color: #e6f608; /* Set the desired text color for the suggestions */
+}
+.text-muted{
+  color:red !important;
+}
+
+form .form-text.text-muted.small {
+  /*color: #ffffff !important; /* Use !important to ensure this rule takes precedence */
+}
+
+

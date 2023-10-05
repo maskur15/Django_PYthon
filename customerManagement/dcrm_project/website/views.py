@@ -97,5 +97,5 @@ def update_record(request,pk):
             return redirect('home')
         return render(request,'update_record.html',{'form':form})
     else:
-        messages.success(request,'You must be logged in to add record')
+        messages.success(request,'You must be logged in to update record')
         return redirect('home')

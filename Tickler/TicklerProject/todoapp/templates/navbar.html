@@ -1,24 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">CRM_APP</a>
+    <a class=" navbar_logo" href="{% url 'home' %}" >Tickler</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
      
         {% if user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link" href="">Add Task </a>
+          <a class="nav-link" href="" style="    color: #ffc107;
+          font-family: cursive;
+          font-size: larger;">Add Task </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'logout' %}">Logout </a>
+          <a class="nav-link" href="{% url 'logout' %}" style="color: #ffc107;
+          font-family: cursive;
+          font-size: larger;">Logout </a>
         </li>
         {% else %}
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Login </a>
+          <a class="nav-link" href="{% url 'home' %}" style="    color: #ffc107;
+          font-family: cursive;
+          font-size: larger;">Login </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'register' %}">Register </a>
+          <a class="nav-link" href="{% url 'register' %}" style="    color: #ffc107;
+          font-family: cursive;
+          font-size: larger;">Register </a>
         </li>
         {% endif %}
       </ul>

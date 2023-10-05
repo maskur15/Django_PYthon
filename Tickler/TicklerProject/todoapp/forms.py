@@ -30,4 +30,14 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
-	
+		self.fields['email'].widget.attrs['class']='form-control'
+		self.fields['email'].widget.attrs['placeholder'] = 'Enter email address'
+		self.fields['email'].label = ''
+
+		self.fields['gender'].widget.attrs['class']='form-control form-select'
+
+		#self.fields['gender'].label = 'Choose gender'
+
+		self.fields['country'].widget.attrs['class']='form-control'
+		self.fields['country'].widget.attrs['placeholder'] = 'Enter country'
+		self.fields['country'].label = ''

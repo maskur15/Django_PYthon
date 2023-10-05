@@ -70,17 +70,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'TicklerProject.wsgi.application'
-
-
+import os 
+STATICFILES_DIRS= [
+    os.path.join(BASE_DIR,'todoapp','static')
+]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -143,4 +145,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sabilhasan2018@gmail.com'
-EMAIL_HOST_PASSWORD = 'nzonmfwmwzzvwfjfk'
+EMAIL_HOST_PASSWORD = 'nzonmfwmwzzvwfjfk '
