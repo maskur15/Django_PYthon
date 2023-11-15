@@ -2,11 +2,12 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django import forms 
 from .models import Task,CustomUser
+from django_countries.fields import CountryField
 
 class SignUpForm(UserCreationForm):
 	# email = forms.EmailField(label="", widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
 	# full_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
-
+  	
 	class Meta:
 		model = CustomUser
 		fields = ('username','email','gender','country' ,'password1', 'password2')
@@ -14,6 +15,9 @@ class SignUpForm(UserCreationForm):
 
 	def __init__(self, *args, **kwargs):
 		super(SignUpForm, self).__init__(*args, **kwargs)
+		
+		
+
 
 		self.fields['username'].widget.attrs['class'] = 'form-control'
 		self.fields['username'].widget.attrs['placeholder'] = 'User Name'
@@ -36,7 +40,8 @@ class SignUpForm(UserCreationForm):
 
 		self.fields['gender'].widget.attrs['class']='form-control form-select'
 
-		#self.fields['gender'].label = 'Choose gender'
+		self.fields['gender'].label = ''
+
 
 		self.fields['country'].widget.attrs['class']='form-control'
 		self.fields['country'].widget.attrs['placeholder'] = 'Enter country'

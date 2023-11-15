@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_countries',
     'todoapp',
 ]
 
@@ -64,10 +65,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'TicklerProject.wsgi.application'
 import os 
@@ -145,4 +150,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sabilhasan2018@gmail.com'
-EMAIL_HOST_PASSWORD = 'nzonmfwmwzzvwfjfk '
+EMAIL_HOST_PASSWORD = 'nzonmfwmwzzvwfjf'

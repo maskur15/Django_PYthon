@@ -2,19 +2,24 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django_countries.fields import CountryField
+
 class CustomUser(AbstractUser):
     # Define the choices for the 'gender' field
     GENDER_CHOICES = [
+        ('','Choose Gender'),
         ('M', 'Male'),
         ('F', 'Female'),
         ('O', 'Other'),
     ]
+    
 
     # 'gender' field with choices
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
 
     # 'country' field as a CharField
-    country = models.CharField(max_length=100, blank=True, null=True)
+    #country = models.CharField(max_length=100, blank=True, null=True)
+    country = CountryField(blank_label="Choose country")
 
     def __str__(self) -> str:
         return self.username

@@ -20,7 +20,6 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib import messages
 from .models import Task
 
-
 User = get_user_model()
 
 def registration_view(request):
@@ -33,8 +32,7 @@ def registration_view(request):
             gender = form.cleaned_data['gender']
             country = form.cleaned_data['country']
             # Add other fields as needed
-
-            # Create a user with is_active=False
+      # Create a user with is_active=False
             user = User.objects.create_user(
                 username= username,
                 email=email,
@@ -43,6 +41,8 @@ def registration_view(request):
                 country=country,
                 is_active=False  # Set the user as inactive until email verification
             )
+                
+       
             # Generate a verification token
 
             current_site = get_current_site(request)
@@ -66,15 +66,20 @@ def registration_view(request):
             message_plain = strip_tags(message_html)
 
             # Send the email with both HTML and plain text versions
+            sender_name = "TciklerApp"
+            from_email = f'"{sender_name}" <sabilhasan2018@gmail.com>'
+
             try:
+                
                 send_mail(
                             mail_subject,
                             message_plain,  # Plain text version
-                            'sabilhasan2018@gmail.com',
+                            from_email,
                             [email],
                             html_message=message_html,  # HTML version
                             fail_silently=False,
                         )
+          
                 messages.success(request,"You have scucessfully registred.Check your email and activate your account")
                 return redirect('home')
 
