@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card text-center" style="margin-top: 50px;">
+            <div class="card-header">
+                <img  src="{% static 'encryption_app/images/cipher.svg' %}" height="100" width="200"  alt="">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" id="title-msg" >
+                Home of Secure Encrpytion <br> Encrypt an Image  </h5> <br>
+               
+        <div class="container">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+            
+                    <input type="file" required class="form-control-file "  id="image" name="image">
+                </div>
+            
+                <button type="submit" class="btn btn-primary" >Encrypt</button>
+              </form>
+            
+            
+        </div>
+            </div>
+            <div class="card-footer text-muted">
+              <p id="clock" style="color:#061aff!important"></p>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3"></div>
+   
+
+</div>
+
+{% endblock %}

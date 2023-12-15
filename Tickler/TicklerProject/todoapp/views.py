@@ -94,9 +94,6 @@ def registration_view(request):
 
 
 
-
-
-
 def activate_account(request, uidb64, token):
     User = get_user_model()
 

@@ -1,0 +1,15 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+
+        <input type="file" required class="form-control-file hidden"  id="image" name="image">
+    </div>
+    <div class="form-group">
+        <input hidden type="text" required value="text" id="type" name="type">
+    </div>
+    <div class="form-group ">
+        <textarea class="form-control" required id="text" placeholder="Enter the text" rows="3" name="text"></textarea>
+      </div>
+    <button type="submit" class="btn btn-primary" >Encrypt</button>
+  </form>
+
