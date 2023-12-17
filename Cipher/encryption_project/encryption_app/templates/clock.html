@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Copy Text Example</title>
 </head>
 <body>
-    <h1>Imagge header encrypt</h1>
+
+<div id="copyContainer">
+    <p id="messageKey">Key: <span id="keyValue">YourKeyHere</span></p>
+    <p id="messageText">Text: <span id="textValue">YourTextHere</span></p>
+    <button onclick="copyText()">Copy Text</button>
+</div>
+
+<script>
+    function copyText() {
+        /* Get the text values */
+        var key = document.getElementById('keyValue').innerText;
+        var text = document.getElementById('textValue').innerText;
+
+        /* Create a temporary textarea to copy the text */
+        var tempTextArea = document.createElement('textarea');
+        tempTextArea.value = 'Key: ' + key + '\nText: ' + text;
+        document.body.appendChild(tempTextArea);
+
+        /* Select the text in the textarea */
+        tempTextArea.select();
+        tempTextArea.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text to the clipboard */
+        document.execCommand('copy');
+
+        /* Remove the temporary textarea */
+        document.body.removeChild(tempTextArea);
+
+        /* Provide feedback to the user (optional) */
+        alert('Text copied to clipboard: \nKey: ' + key + '\nText: ' + text);
+    }
+</script>
+
 </body>
 </html>

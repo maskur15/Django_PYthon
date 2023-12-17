@@ -14,18 +14,19 @@
                 Home of Secure Encrpytion <br> Encrypt an Image  </h5> <br>
                
         <div class="container">
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-            
-                    <input type="file" required class="form-control-file "  id="image" name="image">
-                </div>
-            
-                <button type="submit" class="btn btn-primary" >Encrypt</button>
-              </form>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Submit</button>
+        </form>
             
             
         </div>
+        <h2>Uploaded Images</h2>
+        {% if image_path %}
+            <img src="{{ image_path }}" alt="Uploaded Image">
+        {% endif %}
+    
             </div>
             <div class="card-footer text-muted">
               <p id="clock" style="color:#061aff!important"></p>

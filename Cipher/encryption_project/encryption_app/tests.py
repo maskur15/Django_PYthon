@@ -1,34 +1,59 @@
-from django.test import TestCase
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from base64 import b64encode, b64decode
+import os
 
-# Create your tests here.
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
-from Crypto.Random import get_random_bytes
+def derive_key(password, salt):
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        iterations=100000,  # You can adjust the number of iterations based on your security requirements
+        salt=salt,
+        length=32  # 32 bytes for AES-256
+    )
+    return kdf.derive(password.encode('utf-8'))
 
-def encrypt(plaintext, key):
-    cipher = AES.new(key, AES.MODE_ECB)
-    padded_plaintext = pad(plaintext.encode(), AES.block_size)
-    ciphertext = cipher.encrypt(padded_plaintext)
-    return ciphertext
+def encrypt_text(password, text):
+    salt = os.urandom(16)
+    key = derive_key(password, salt)
 
-def decrypt(ciphertext, key):
-    cipher = AES.new(key, AES.MODE_ECB)
-    decrypted_data = cipher.decrypt(ciphertext)
-    plaintext = unpad(decrypted_data, AES.block_size)
-    return plaintext.decode()
+    iv = os.urandom(16)
 
-# Example usage:
-if __name__ == "__main__":
-    # Generate a random 128-bit key (16 bytes)
-    key = get_random_bytes(16)
+    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
 
-    # Text to be encrypted
-    original_text = "Hello, AES!"
+    ciphertext = encryptor.update(text.encode('utf-8')) + encryptor.finalize()
 
-    # Encrypt
-    encrypted_text = encrypt(original_text, key)
-    print(f"Encrypted Text: {encrypted_text.hex()}")
+    # Concatenate salt and IV to the ciphertext
+    combined_value = salt + iv + ciphertext
 
-    # Decrypt
-    decrypted_text = decrypt(encrypted_text, key)
-    print(f"Decrypted Text: {decrypted_text}")
+    return b64encode(combined_value).decode('utf-8')
+
+def decrypt_text(password, combined_value):
+    combined_value = b64decode(combined_value)
+
+    # Extract salt, IV, and ciphertext from the combined value
+    salt = combined_value[:16]
+    iv = combined_value[16:32]
+    ciphertext = combined_value[32:]
+
+    key = derive_key(password, salt)
+
+    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    decryptor = cipher.decryptor()
+
+    plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+
+    return plaintext.decode('utf-8')
+
+
+# Example usage
+encryption_password = "my_secure_password"
+plaintext_message = "Hello, AES encryption!"
+
+combined_value = encrypt_text(encryption_password, plaintext_message)
+print(f"Combined Value: {combined_value}")
+
+decrypted_text = decrypt_text('boy', combined_value='1euBQ0r+mWcVarzn99vtXolW8Vm/xlc8yUknzIkvQjn+f/TeF43JCgjCaHy03A==')
+print(f"Decrypted Text: {decrypted_text}")

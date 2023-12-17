@@ -1,38 +1,4 @@
 
-function toggleField() {
-    //setganoraphy on 
-    var imgField = document.getElementById('image');
-    var textField = document.getElementById('text')
-    var cardTitle = document.getElementById('title-msg')
-    var type = document.getElementById('type')
-    type.value='stegano'
-    cardTitle.textContent='Success Stegenography'
-    imgField.style.display= 'block'
-    textField.style.display='block'
-
-}
-function hideText(){
-    //image field on 
-    var textfield = document.getElementById('text')
-    var imgField = document.getElementById('image')
-    var cardTitle = document.getElementById('title-msg')
-    var type = document.getElementById('type')
-    type.value='image'
-
-    cardTitle.textContent='Image Encyption'
-    imgField.style.display='block'
-    textfield.style.display='none'
-}
-function hideImage(){
-    //text filed on 
-    var field = document.getElementById('image');
-    var cardTitle = document.getElementById('title-msg')
-    var type = document.getElementById('type')
-    type.value='text'
-    cardTitle.textContent='Text Encryption'
-    field.style.display='none'
-    
-}
 console.log('Ti it is ')
 console.log(image)
 
@@ -56,3 +22,37 @@ setInterval(updateClock, 1000);
 
 // Initial call to set the clock immediately
 updateClock();
+
+
+function copyText() {
+    /* Get the text values */
+    var text = document.getElementById('textValue').innerText;
+
+    /* Create a temporary textarea to copy the text */
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value =  text;
+    document.body.appendChild(tempTextArea);
+
+    /* Select the text in the textarea */
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text to the clipboard */
+    document.execCommand('copy');
+
+    /* Remove the temporary textarea */
+    document.body.removeChild(tempTextArea);
+
+    /* Provide feedback to the user (optional) */
+    alert('Text copied to clipboard:\nCipherText: ' + text);
+}
+
+
+function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
