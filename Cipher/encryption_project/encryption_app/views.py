@@ -74,10 +74,13 @@ def decryptText(request):
         cipher_text = request.POST.get('text')
         password = request.POST.get('password')
         print(type(cipher_text),type(password))
-        text = decrypt_text(password,cipher_text)
-        print(text)
-        return render(request,'decrypt_text.html',{"text":text})
-        pass
+        try:
+            text = decrypt_text(password,cipher_text)
+            print(text)
+            return render(request,'decrypt_text.html',{"text":text})
+
+        except Exception as e:
+            pass
     return render(request,'decrypt_text.html')
 
 def showHome(request):
