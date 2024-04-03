@@ -39,7 +39,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class Book(models.Model):
-    id = models.IntegerField(primary_key=True)
+    #id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     genre = models.CharField(max_length=50)
     book_rating = models.CharField(max_length=10)  # Assuming it stores 'good' or 'bad'
@@ -55,7 +55,7 @@ class Book(models.Model):
             avg_rating=0.0
         return avg_rating
 class Rating(models.Model):
-    id = models.IntegerField(primary_key=True)
+    #id = models.IntegerField(primary_key=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user_rating = models.FloatField()
