@@ -19,6 +19,7 @@ def test_get(endpoint):
     print(response.json())
     print()
 
+
 # Test creating a new user
 new_user_data = {
     "name": "John Malik",
@@ -26,8 +27,28 @@ new_user_data = {
     "password": "paspoi1",
     "email": "poi@gmail.com"
 }
+new_book={
+"name": "Head First Java",
+"genre":"programming",
+"book_rating":"Good",
+"release_date":"2019-12-1"
+}
+new_rating={
+"user_id":2,
+"book_id":1,
+"user_rating:": 5
+}
+new_rating={
+    'user_id':4,
+    'book_id':2,
+    'user_rating':5
+}
+#test_post('books/add/',new_book)
 #test_post('user/', new_user_data)
-
+#test_get('books/')
+#test_get('book/1')
+# test_post('rate/',new_rating)
+# test_get('ratings/')
 # Test retrieving a specific user
 #test_get('user/5')
 
@@ -50,4 +71,4 @@ def test_get_all_users():
     print()
 
 # Test retrieving all users
-#test_get_all_users()
+test_get_all_users()
