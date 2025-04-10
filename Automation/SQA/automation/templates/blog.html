@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code and Explanation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .code-block {
+            background: #f1f1f1;
+            border-left: 3px solid #333;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .image-container, .video-container {
+            margin: 20px 0;
+        }
+        .image-container img, .video-container iframe {
+            max-width: 100%;
+            height: auto;
+        }
+        .explanation {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lesson 1 Introduction to selenium</h1>
+
+        <h2>Code Example</h2>
+        <div class="code-block">
+            <pre>
+<code>
+def hello_world():
+    print("Hello, world!")
+</code>
+            </pre>
+        </div>
+
+        <h2>Explanation</h2>
+        <div class="explanation">
+            <p>This code defines a simple Python function called <code>hello_world</code> that prints "Hello, world!" to the console. When the function is called, it will output the string to the screen.</p>
+        </div>
+
+        <h2>Images</h2>
+        <div class="image-container">
+            <img src="{% static 'automation/images/cipher.jpg' %}" alt="Description of image">
+            <p>Image description goes here.</p>
+        </div>
+
+        <h2>Videos</h2>
+        <div class="video-container">
+            <iframe  src="https://www.youtube.com/embed/ev-__mYx8Kk?si=8744aJ6xiuz9NsZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            <p>Video description goes here.</p>
+        </div>
+    </div>
+</body>
+</html>

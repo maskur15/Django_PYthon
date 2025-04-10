@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Lessons{% endblock %}
+
+{% block content %}
+<h1>All Lessons</h1>
+<ul class="list-group">
+    {% for lesson in lessons %}
+    <li class="list-group-item">
+        <h5><a href="{% url 'lesson_detail' lesson.pk %}">{{ lesson.title }}</a></h5>
+        <p>{{ lesson.description|truncatewords:20 }}</p>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No lessons found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

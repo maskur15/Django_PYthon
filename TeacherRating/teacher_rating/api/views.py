@@ -63,7 +63,7 @@ def get_all_users(request):
     serializer = UserReadSerializer(users, many=True)
     return Response(serializer.data)
 @api_view(['POST'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def add_book(request):
     if request.method == 'POST':
         # Extract book data from request

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Creation Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h2 {
+            margin-bottom: 15px;
+        }
+        .CodeMirror {
+            border: 1px solid #ced4da;
+            height: auto;
+            min-height: 200px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Unit Creation Form</h1>
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <!-- Unit Title Section -->
+            <div class="form-section">
+                <label for="unitTitle" class="form-label">Unit Title</label>
+                <input type="text" class="form-control" id="unitTitle" name="unitTitle" required>
+            </div>
+            
+            <div class="form-section">
+                <label for="unitDescription" class="form-label">Unit Description</label>
+                <textarea class="form-control" id="unitDescription" name="unitDescription" rows="5" required></textarea>
+            </div>
+            
+
+            <!-- Image Upload Section -->
+            <div class="form-section">
+                <label for="unitImage" class="form-label">Upload Unit Image</label>
+                <input type="file" class="form-control" id="unitImage" name="unitImage" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Unit</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css"></script>
+    <script>
+        // Initialize CodeMirror on the description textarea
+        const descriptionEditor = CodeMirror.fromTextArea(document.getElementById('descriptionEditor'), {
+            lineNumbers: true,
+            mode: 'markdown',
+            theme: 'monokai',
+            matchBrackets: true,
+            indentUnit: 4,
+            autoCloseBrackets: true
+        });
+    </script>
+</body>
+</html>

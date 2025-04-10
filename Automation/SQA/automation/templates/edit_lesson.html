@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Lesson for Unit: {{ unit.unit_title }}</h2>
+
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label">Lesson Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label">Lesson Description</label>
+            {{ form.description }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+            {{ form.content }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'unit_detail' unit.id %}" class="btn btn-secondary">Back to Unit</a>
+    </form>
+</div>
+
+<!-- TinyMCE and sync logic (same as create form) -->
+<script src="https://cdn.tiny.cloud/1/at77xp5buc5xbgtx4g2a5g9yykf9ymwr9yuxscpfh6w3hze2/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+    selector: 'textarea[name="content"]',
+    plugins: [
+      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons',
+      'image', 'link', 'lists', 'media', 'searchreplace',
+      'table', 'visualblocks', 'wordcount'
+    ],
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | removeformat',
+    setup: function (editor) {
+      editor.on('change', function () {
+        tinymce.triggerSave();
+      });
+    }
+  });
+
+  document.querySelector('form').addEventListener('submit', function (e) {
+    tinymce.triggerSave();
+    const contentField = document.querySelector('textarea[name="content"]');
+    if (!contentField.value.trim()) {
+      e.preventDefault();
+      alert("Content is required.");
+    }
+    contentField.removeAttribute('required');
+  });
+</script>
+{% endblock %}

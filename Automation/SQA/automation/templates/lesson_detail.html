@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ lesson.title }}</h1>
+<p><em>{{ lesson.description }}</em></p>
+
+<hr>
+
+<!-- This will render the HTML content from TinyMCE safely -->
+<div>
+    {{ lesson.content|safe }}
+</div>
+{% endblock %}

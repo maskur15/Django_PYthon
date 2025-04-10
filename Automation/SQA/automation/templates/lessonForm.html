@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Management Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.tiny.cloud/1/at77xp5buc5xbgtx4g2a5g9yykf9ymwr9yuxscpfh6w3hze2/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h2 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <!-- Flash messages -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h1>Content Management Form</h1>
+        <form method="POST">
+            {% csrf_token %}
+    
+            <!-- Lesson Title -->
+            <div class="form-section">
+                <div class="mb-3">
+                    <label for="lesson_title" class="form-label">Lesson Title</label>
+                    <input type="text" class="form-control" id="lesson_title" name="lesson_title" required>
+                </div>
+            </div>
+    
+            <!-- Lesson Description -->
+            <div class="form-section">
+                <div class="mb-3">
+                    <label for="lesson_description" class="form-label">Lesson Description</label>
+                    <textarea class="form-control" id="lesson_description" name="lesson_description" rows="3" required></textarea>
+                </div>
+            </div>
+    
+            <!-- Content Section (TinyMCE) -->
+            <div class="form-section">
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content Goes Here</label>
+                    <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button (Inside the form) -->
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize TinyMCE
+        tinymce.init({
+            selector: '#content',
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons',
+                'image', 'link', 'lists', 'media', 'searchreplace',
+                'table', 'visualblocks', 'wordcount'
+            ],
+
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+        });
+      
+        document.querySelector('form').addEventListener('submit', function(e) {
+    tinymce.triggerSave(); // sync TinyMCE content to textarea
+    const content = document.getElementById('content').value.trim();
+        if (!content) {
+            e.preventDefault(); // stop form submission
+            alert("Content is required.");
+        }
+    });
+
+    </script>
+</body>
+</html>
